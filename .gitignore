@@ -1,0 +1,18 @@
+# ── Obsidian: estado local de cada persona (no se comparte) ──
+# (**/ = en la raíz o dentro de cada proyecto, si cada uno es un vault aparte)
+**/.obsidian/workspace.json
+**/.obsidian/workspace-mobile.json
+**/.obsidian/workspaces.json
+**/.obsidian/cache
+**/.trash/
+
+# ── Sistema operativo ──
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Archivos temporales de Office ──
+~$*
+
+# ── Generados ──
+Dashboard*.html

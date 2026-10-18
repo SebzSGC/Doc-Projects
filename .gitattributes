@@ -1,0 +1,19 @@
+# Normaliza finales de línea (evita conflictos entre Windows y Mac/Linux)
+* text=auto eol=lf
+*.md      text eol=lf diff=markdown
+*.canvas  text eol=lf
+*.json    text eol=lf
+
+# Binarios: git no intenta mezclarlos ni mostrar diff de texto
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.pdf  binary
+*.docx binary
+*.xlsx binary
+*.pptx binary
+*.pbix binary
+*.zip  binary
+*.excalidraw.md text eol=lf
