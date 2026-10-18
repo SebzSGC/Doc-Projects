@@ -18,17 +18,27 @@ etiquetas:
 
 ```mermaid
 flowchart LR
-    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial"] --> V2["📅 2026-10-18 — v1.1.0<br/>Réplica Local Next.js 15"] --> V3["📅 2026-10-18 — v1.2.0<br/>Inspección URLs YouTube"] --> V4["📅 2026-10-18 — v1.3.0<br/>Motores IA (Gemini / Groq)"] --> V5["📅 2026-10-18 — v1.4.0<br/>Stream MP4 + Subtítulos ASR"] --> V6["📅 2026-10-18 — v1.5.0<br/>Rediseño Minimalista Creativo"] --> V7["📅 2026-10-18 — v1.6.0<br/>Depuración de Pausas/Ruido<br/>+ Fuente Josefin Sans"] --> V8["📅 2026-10-18 — v1.7.0<br/>Optimización Tokens API<br/>+ Auto-Zoom y Encuadre"] --> V9["📅 2026-10-18 — v1.8.0<br/>Descarga de Clip Real<br/>+ Subtítulos Coherentes"]
+    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial"] --> V2["📅 2026-10-18 — v1.1.0<br/>Réplica Local Next.js 15"] --> V3["📅 2026-10-18 — v1.2.0<br/>Inspección URLs YouTube"] --> V4["📅 2026-10-18 — v1.3.0<br/>Motores IA (Gemini / Groq)"] --> V5["📅 2026-10-18 — v1.4.0<br/>Stream MP4 + Subtítulos ASR"] --> V6["📅 2026-10-18 — v1.5.0<br/>Rediseño Minimalista Creativo"] --> V7["📅 2026-10-18 — v1.6.0<br/>Depuración de Pausas/Ruido<br/>+ Fuente Josefin Sans"] --> V8["📅 2026-10-18 — v1.7.0<br/>Optimización Tokens API<br/>+ Auto-Zoom y Encuadre"] --> V9["📅 2026-10-18 — v1.8.0<br/>Descarga de Clip Real<br/>+ Subtítulos Coherentes"] --> V10["📅 2026-10-18 — v1.8.1<br/>Motor 1080p Full HD<br/>+ Subtítulos Quemados"]
 ```
 
-El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`), la construcción de la réplica local (`v1.1.0`), la ingesta dinámica de YouTube (`v1.2.0`), la integración de IA (`v1.3.0`), la sincronización de flujo MP4 nativo (`v1.4.0`), el rediseño integral minimalista creativo (`v1.5.0`), la depuración de transcripción con tipografía editorial Josefin Sans (`v1.6.0`), la optimización de llamadas API (`v1.7.0`) y la descarga directa de clips recortados con subtítulos naturales sin desfaces temporales (`v1.8.0`).
+El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`), la construcción de la réplica local (`v1.1.0`), la ingesta dinámica de YouTube (`v1.2.0`), la integración de IA (`v1.3.0`), la sincronización de flujo MP4 nativo (`v1.4.0`), el rediseño integral minimalista creativo (`v1.5.0`), la depuración de transcripción con tipografía editorial Josefin Sans (`v1.6.0`), la optimización de llamadas API (`v1.7.0`), la descarga directa de clips recortados con subtítulos naturales (`v1.8.0`) y el motor de renderizado Full HD 1080x1920 con subtítulos quemados ASS (`v1.8.1`).
 
 > [!example] Ejemplo real: Trazabilidad de versión de OpusClip auditada
-> La versión `v1.0.0` de esta documentación corresponde al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, la versión `v1.1.0` materializó la aplicación local en `http://localhost:3040`, la versión `v1.5.0` transformó la experiencia en un estudio de IA minimalista y premium, la versión `v1.6.0` perfeccionó la visualización de texto con Josefin Sans, la versión `v1.7.0` maximizó el rendimiento de tokens y auto-edición, y la versión `v1.8.0` materializa la descarga efectiva del clip 9:16 y el fraseo natural de subtítulos sin saltos al futuro.
+> La versión `v1.0.0` de esta documentación corresponde al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, la versión `v1.1.0` materializó la aplicación local en `http://localhost:3040`, la versión `v1.5.0` transformó la experiencia en un estudio de IA minimalista y premium, la versión `v1.6.0` perfeccionó la visualización de texto con Josefin Sans, la versión `v1.7.0` maximizó el rendimiento de tokens y auto-edición, la versión `v1.8.0` materializó la descarga efectiva del clip 9:16, y la versión `v1.8.1` implementa la exportación en 1080p Full HD con subtítulos quemados en tipografía Josefin Sans y audio AAC sin pérdidas.
 
 ---
 
 ## 📜 Bitácora de versiones
+
+### `v1.8.1` — 2026-10-18 (Motor Full HD 1080x1920 con Subtítulos Quemados ASS y Audio AAC Impecable)
+- **⚠️ Cambia para ti**:
+  - **Descarga en Alta Definición Real (1080x1920 Full HD)**: El video descargado ya no está pixelado ni degradado a 202x360. El motor del servidor extrae flujos de video directos en 1080p (`itag 137`) o 720p (`itag 136`) de YouTube innertube y los combina con la pista de audio estéreo AAC a 192 kbps.
+  - **Subtítulos quemados en el archivo descargado**: El clip descargado incluye los subtítulos de karaoke incrustados permanentemente mediante el filtro `libass` de FFmpeg con la tipografía Josefin Sans, resaltado activo dorado (`#FBBF24`), contorno negro nítido, silenciado completo durante pausas y el banner superior de gancho viral (`MOMENTO VIRAL ⚡`).
+  - **Sonido 100% fiel y cristalino**: Se eliminó la dependencia de captura de pantalla por Canvas mudo en el navegador; el pipeline del backend garantiza un multiplexado digital nativo en contenedor MP4 (`+faststart`).
+- **Implementación Técnica**:
+  - `src/lib/youtubeInnertube.ts`: Extracción de flujos separados de video de alta resolución (`adaptiveFormats` itag 137/136) y audio (`audio/mp4` AAC itag 140/139).
+  - `src/app/api/export-clip/route.ts`: Motor FFmpeg con soporte `POST` y `GET`, generación dinámica de scripts de subtítulos `.ass`, escalado Lanczos a 1080x1920 y codificación libx264 CRF 18 con audio AAC 192k.
+  - `src/lib/clipExporter.ts`: Envío del payload con palabras y metadatos de gancho al endpoint del backend para la exportación directa y descarga con progreso.
 
 ### `v1.8.0` — 2026-10-18 (Descarga Real del Clip Recortado y Subtítulos Naturales Coherentes)
 - **⚠️ Cambia para ti**:
