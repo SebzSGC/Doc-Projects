@@ -1,0 +1,78 @@
+{
+  "nodes": [
+    {"id":"g-vision","type":"group","x":-820,"y":-320,"width":420,"height":540,"label":"🎯 10 - Visión general","color":"4"},
+    {"id":"g-arq","type":"group","x":-320,"y":-320,"width":460,"height":880,"label":"🏗️ 20 - Arquitectura","color":"5"},
+    {"id":"g-flujos","type":"group","x":220,"y":-320,"width":440,"height":640,"label":"🔄 30 - Flujos y procesos","color":"3"},
+    {"id":"g-datos","type":"group","x":740,"y":-320,"width":420,"height":400,"label":"📊 40 - Datos","color":"6"},
+    {"id":"g-guias","type":"group","x":-820,"y":280,"width":420,"height":520,"label":"🧭 50 - Guías","color":"3"},
+    {"id":"g-ops","type":"group","x":220,"y":380,"width":440,"height":640,"label":"🚑 60 - Operación","color":"2"},
+    {"id":"g-dec","type":"group","x":740,"y":140,"width":420,"height":520,"label":"⚖️ 70 - Decisiones","color":"5"},
+    {"id":"g-ref","type":"group","x":740,"y":720,"width":420,"height":400,"label":"📖 80 - Referencia","color":"6"},
+    {"id":"g-rec","type":"group","x":-320,"y":620,"width":460,"height":400,"label":"🗂️ 90 - Recursos","color":"4"},
+
+    {"id":"inicio","type":"file","file":"00 - Inicio.md","x":-820,"y":-520,"width":420,"height":140,"color":"4"},
+    {"id":"nota-guia","type":"text","text":"## 👋 Mapa de VidForge Studio & REA\nCada tarjeta es una nota del vault: haz **doble clic** para abrirla.\nLas flechas muestran cómo se conectan las piezas del ecosistema.","x":-320,"y":-520,"width":520,"height":140},
+
+    {"id":"moc-vision","type":"file","file":"10 - Visión general/Visión general.md","x":-800,"y":-280,"width":380,"height":80},
+    {"id":"resumen","type":"file","file":"10 - Visión general/Resumen ejecutivo.md","x":-800,"y":-180,"width":380,"height":90},
+    {"id":"alcance","type":"file","file":"10 - Visión general/Alcance y objetivos.md","x":-800,"y":-70,"width":380,"height":90},
+    {"id":"actores","type":"file","file":"10 - Visión general/Actores y responsables.md","x":-800,"y":40,"width":380,"height":90},
+    {"id":"glosario","type":"file","file":"10 - Visión general/Glosario.md","x":-800,"y":140,"width":380,"height":70},
+
+    {"id":"moc-arq","type":"file","file":"20 - Arquitectura/Arquitectura.md","x":-300,"y":-280,"width":420,"height":80},
+    {"id":"arq-gen","type":"file","file":"20 - Arquitectura/Arquitectura general.md","x":-300,"y":-180,"width":420,"height":90},
+    {"id":"integ","type":"file","file":"20 - Arquitectura/Integraciones.md","x":-300,"y":-70,"width":420,"height":90},
+    {"id":"comp-rea","type":"file","file":"20 - Arquitectura/Componentes/Especialista REA y Auditoría Forense.md","x":-300,"y":40,"width":420,"height":90},
+    {"id":"comp-be","type":"file","file":"20 - Arquitectura/Componentes/Servidor Backend y Gestor de Trabajos.md","x":-300,"y":150,"width":420,"height":90},
+    {"id":"comp-sc","type":"file","file":"20 - Arquitectura/Componentes/Sidecar de Renderizado y Motor FFmpeg.md","x":-300,"y":260,"width":420,"height":90},
+    {"id":"comp-asr","type":"file","file":"20 - Arquitectura/Componentes/Alineador ASR y Planificador de Timeline.md","x":-300,"y":370,"width":420,"height":90},
+    {"id":"comp-web","type":"file","file":"20 - Arquitectura/Componentes/Interfaz Web Studio y Lanzador Nativo.md","x":-300,"y":470,"width":420,"height":80},
+
+    {"id":"moc-flujos","type":"file","file":"30 - Flujos y procesos/Flujos y procesos.md","x":240,"y":-280,"width":400,"height":80},
+    {"id":"flujo-auto","type":"file","file":"30 - Flujos y procesos/Flujo de Autopilot en un clic.md","x":240,"y":-180,"width":400,"height":90},
+    {"id":"flujo-render","type":"file","file":"30 - Flujos y procesos/Flujo de renderizado y escenas animadas.md","x":240,"y":-70,"width":400,"height":90},
+    {"id":"flujo-exp","type":"file","file":"30 - Flujos y procesos/Flujo de exportación a CapCut y OTIO.md","x":240,"y":40,"width":400,"height":90},
+    {"id":"flujo-rea","type":"file","file":"30 - Flujos y procesos/Flujo de ingeniería inversa con REA.md","x":240,"y":150,"width":400,"height":90},
+
+    {"id":"moc-datos","type":"file","file":"40 - Datos/Datos.md","x":760,"y":-280,"width":380,"height":80},
+    {"id":"modelo","type":"file","file":"40 - Datos/Modelo de datos.md","x":760,"y":-180,"width":380,"height":90},
+    {"id":"metricas","type":"file","file":"40 - Datos/Indicadores y métricas.md","x":760,"y":-70,"width":380,"height":90},
+
+    {"id":"moc-guias","type":"file","file":"50 - Guías/Guías.md","x":-800,"y":320,"width":380,"height":80},
+    {"id":"guia-pasos","type":"file","file":"50 - Guías/Primeros pasos.md","x":-800,"y":420,"width":380,"height":90},
+    {"id":"guia-video","type":"file","file":"50 - Guías/Cómo crear y exportar un vídeo con IA.md","x":-800,"y":530,"width":380,"height":90},
+    {"id":"guia-rea","type":"file","file":"50 - Guías/Cómo auditar binarios con REA en Windows.md","x":-800,"y":640,"width":380,"height":90},
+
+    {"id":"moc-ops","type":"file","file":"60 - Operación/Operación.md","x":240,"y":420,"width":400,"height":80},
+    {"id":"ops-desp","type":"file","file":"60 - Operación/Despliegue e instalador.md","x":240,"y":520,"width":400,"height":90},
+    {"id":"ops-mon","type":"file","file":"60 - Operación/Monitoreo y diagnóstico.md","x":240,"y":630,"width":400,"height":90},
+    {"id":"rb-sidecar","type":"file","file":"60 - Operación/Runbooks/Runbook · Fallo en Sidecar o FFmpeg NVENC.md","x":240,"y":740,"width":400,"height":90},
+    {"id":"rb-rea","type":"file","file":"60 - Operación/Runbooks/Runbook · Herramientas MCP de REA no disponibles.md","x":240,"y":850,"width":400,"height":90},
+
+    {"id":"moc-dec","type":"file","file":"70 - Decisiones/Decisiones.md","x":760,"y":180,"width":380,"height":80},
+    {"id":"adr-001","type":"file","file":"70 - Decisiones/ADR-001 Reconstrucción Clean-Room con FastAPI y Sidecar ESM.md","x":760,"y":280,"width":380,"height":90},
+    {"id":"adr-002","type":"file","file":"70 - Decisiones/ADR-002 Almacenamiento híbrido SQLite WAL y carpetas vfproj.md","x":760,"y":390,"width":380,"height":90},
+    {"id":"adr-003","type":"file","file":"70 - Decisiones/ADR-003 Integración MCP de REA en Windows mediante wrappers cmd.md","x":760,"y":500,"width":380,"height":90},
+
+    {"id":"moc-ref","type":"file","file":"80 - Referencia/Referencia.md","x":760,"y":760,"width":380,"height":80},
+    {"id":"ref-api","type":"file","file":"80 - Referencia/Referencia API.md","x":760,"y":860,"width":380,"height":90},
+    {"id":"ref-tpl","type":"file","file":"80 - Referencia/Catálogo de plantillas y contratos JSON.md","x":760,"y":970,"width":380,"height":90},
+
+    {"id":"moc-rec","type":"file","file":"90 - Recursos/Recursos.md","x":-300,"y":660,"width":420,"height":80},
+    {"id":"rec-faq","type":"file","file":"90 - Recursos/FAQ.md","x":-300,"y":760,"width":420,"height":90},
+    {"id":"rec-hist","type":"file","file":"90 - Recursos/Historial de cambios.md","x":-300,"y":870,"width":420,"height":90}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"inicio","fromSide":"bottom","toNode":"resumen","toSide":"top","label":"empieza aquí"},
+    {"id":"e2","fromNode":"resumen","fromSide":"right","toNode":"arq-gen","toSide":"left","label":"se implementa en"},
+    {"id":"e3","fromNode":"comp-rea","fromSide":"right","toNode":"flujo-rea","toSide":"left","label":"ejecuta auditoría"},
+    {"id":"e4","fromNode":"comp-be","fromSide":"right","toNode":"flujo-auto","toSide":"left","label":"orquesta"},
+    {"id":"e5","fromNode":"comp-sc","fromSide":"right","toNode":"flujo-render","toSide":"left","label":"renderiza"},
+    {"id":"e6","fromNode":"comp-asr","fromSide":"right","toNode":"flujo-exp","toSide":"left","label":"sincroniza y exporta"},
+    {"id":"e7","fromNode":"flujo-auto","fromSide":"right","toNode":"modelo","toSide":"left","label":"guarda en"},
+    {"id":"e8","fromNode":"comp-sc","fromSide":"bottom","toNode":"rb-sidecar","toSide":"left","label":"si falla","color":"1"},
+    {"id":"e9","fromNode":"comp-rea","fromSide":"bottom","toNode":"rb-rea","toSide":"left","label":"si falla MCP","color":"1"},
+    {"id":"e10","fromNode":"arq-gen","fromSide":"right","toNode":"adr-001","toSide":"left","label":"justificado en"},
+    {"id":"e11","fromNode":"comp-be","fromSide":"right","toNode":"ref-api","toSide":"left","label":"expone /api/v1"}
+  ]
+}
