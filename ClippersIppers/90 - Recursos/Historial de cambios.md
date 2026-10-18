@@ -18,17 +18,26 @@ etiquetas:
 
 ```mermaid
 flowchart LR
-    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial + Descarga de 550+ Chunks +<br/>Creación completa del Vault Obsidian (47 notas)"] --> V2["📅 2026-10-18 — v1.1.0<br/>Construcción de Réplica Local Next.js 15 +<br/>Editor NLE + Calculadora de Créditos"]
+    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial + Descarga de 550+ Chunks +<br/>Creación completa del Vault Obsidian (47 notas)"] --> V2["📅 2026-10-18 — v1.1.0<br/>Construcción de Réplica Local Next.js 15 +<br/>Editor NLE + Calculadora de Créditos"] --> V3["📅 2026-10-18 — v1.2.0<br/>Inspección en vivo de URLs de YouTube +<br/>Extracción de Metadatos y Embed Interactivo"]
 ```
 
-El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`) y la construcción de la réplica funcional local en `D:\rea-projects\ClippersIppers` (`v1.1.0`).
+El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`), la construcción de la réplica local (`v1.1.0`) y la integración del extractor en vivo de YouTube (`v1.2.0`).
 
 > [!example] Ejemplo real: Trazabilidad de versión de OpusClip auditada
-> La versión `v1.0.0` de esta documentación corresponde exactamente al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, y la versión `v1.1.0` materializa todos sus módulos en una aplicación local ejecutable en `http://localhost:3040`.
+> La versión `v1.0.0` de esta documentación corresponde exactamente al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, la versión `v1.1.0` materializa todos sus módulos en una aplicación local en `http://localhost:3040`, y la versión `v1.2.0` añade ingesta dinámica y reproductores en vivo para enlaces externos de YouTube.
 
 ---
 
 ## 📜 Bitácora de versiones
+
+### `v1.2.0` — 2026-10-18 (Inspección en vivo de enlaces YouTube y reproductor embebido)
+- **⚠️ Cambia para ti**:
+  - Al ingresar cualquier enlace de YouTube en la caja de importación del Dashboard, la réplica local consulta en milisegundos el título real del video, el nombre del canal autor, la duración exacta, la miniatura en alta resolución y las etiquetas temáticas.
+  - Tanto en la pantalla de configuración (`/workflow`), como en la vista de resultados (`/clip/[id]`) y en el editor NLE (`/editor-ux/[clipId]`), ahora puedes reproducir el video original directamente mediante el reproductor embebido de YouTube.
+- **Implementación Técnica**:
+  - Implementación del endpoint `/api/inspect-media` en Next.js App Router combinando la API oEmbed pública de YouTube con análisis de cabeceras y duración exacta (`approxDurationMs`).
+  - Función cliente reactiva `fetchLiveMediaMetadata()` con debounce en `src/lib/multipartUploader.ts` y tarjetas de previsualización en `src/app/dashboard/page.tsx`.
+  - Integración de `<iframe src="https://www.youtube.com/embed/..." />` en `src/app/workflow/page.tsx`, `src/app/clip/[id]/page.tsx` y `src/app/editor-ux/[clipId]/page.tsx`.
 
 ### `v1.1.0` — 2026-10-18 (Construcción de Réplica Local Completa en `D:\rea-projects\ClippersIppers`)
 - **⚠️ Cambia para ti**:

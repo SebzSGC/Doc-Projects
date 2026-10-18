@@ -29,11 +29,11 @@ flowchart LR
 
 El diagrama superior resume el recorrido principal dentro de la aplicación local ejecutándose en `http://localhost:3040`, conectando la pantalla de entrada (`/dashboard`) con el configurador de recetas (`/workflow`), la vista de clips curados (`/clip/[id]`), el editor no lineal (`/editor-ux/[clipId]`) y el laboratorio de telemetría (`/opus-labs`).
 
-> [!example] Ejemplo real: Subir un archivo MP4 local y editar su transcripción
-> 1. Abre `http://localhost:3040/dashboard` y arrastra cualquier archivo `.mp4`, `.mov` o `.webm` desde tu equipo a la zona de carga principal.
-> 2. La aplicación ejecuta `extractLocalVideoMetadata` mediante `HTMLVideoElement` y `HTMLCanvasElement` para extraer la duración real, la resolución (`720p`, `1080p` o `4K`) y capturar un fotograma miniatura real, seguido de la simulación de `MultipartUploader` (trozos de `10 MB` con rampa de concurrencia `2 -> 4 -> 8`).
-> 3. En `/workflow`, ajusta el recorte temporal (`startSec`–`endSec`), verifica el desglose matemático de créditos y pulsa **Generar Clips Instantáneamente**.
-> 4. En `/clip/[id]`, descarga los subtítulos `.srt` o el archivo `.xml` para Premiere Pro / DaVinci Resolve, o entra a `/editor-ux/[clipId]` para corregir palabras, resaltar karaoke en dos colores (`#bef737` / `#ffc141`) y eliminar muletillas.
+> [!example] Ejemplo real: Pegar un enlace de YouTube o subir un archivo MP4 local
+> 1. Abre `http://localhost:3040/dashboard` y pega cualquier enlace de YouTube (ej. `https://www.youtube.com/watch?v=dQw4w9WgXcQ` o cualquier video real).
+> 2. La aplicación consulta el endpoint local `/api/inspect-media`, extrayendo en vivo mediante oEmbed y scraping el título real, el canal, la miniatura maxres y la duración exacta en segundos, mostrando una tarjeta verde de confirmación instantánea.
+> 3. En `/workflow`, el video se reproduce directamente mediante el reproductor embebido de YouTube o `<video>` local, los deslizadores se calibran con la duración real del video y la calculadora computa los créditos exactos.
+> 4. En `/clip/[id]` y `/editor-ux/[clipId]`, descarga los subtítulos `.srt` o el archivo `.xml` para Premiere Pro / DaVinci Resolve, edita palabras en tiempo real y resalta términos clave en dos colores (`#bef737` / `#ffc141`).
 
 ---
 

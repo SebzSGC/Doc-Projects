@@ -1,326 +1,41 @@
 {
-  "nodes": [
-    {
-      "id": "grp-vision",
-      "type": "group",
-      "x": -960,
-      "y": -520,
-      "width": 520,
-      "height": 420,
-      "label": "10 - Visión General y Negocio",
-      "color": "4"
-    },
-    {
-      "id": "grp-arq",
-      "type": "group",
-      "x": -340,
-      "y": -520,
-      "width": 720,
-      "height": 960,
-      "label": "20 - Arquitectura y Subsistemas del Dashboard",
-      "color": "5"
-    },
-    {
-      "id": "grp-flujos",
-      "type": "group",
-      "x": 480,
-      "y": -520,
-      "width": 560,
-      "height": 560,
-      "label": "30 - Flujos Operativos y Procesos",
-      "color": "2"
-    },
-    {
-      "id": "grp-datos-ref",
-      "type": "group",
-      "x": 480,
-      "y": 100,
-      "width": 560,
-      "height": 520,
-      "label": "40 / 60 / 80 - Datos, Operación y Evidencia REA",
-      "color": "6"
-    },
-    {
-      "id": "n-inicio",
-      "type": "file",
-      "file": "00 - Inicio.md",
-      "x": -920,
-      "y": -460,
-      "width": 440,
-      "height": 100,
-      "color": "4"
-    },
-    {
-      "id": "n-resumen",
-      "type": "file",
-      "file": "10 - Visión general/Resumen ejecutivo.md",
-      "x": -920,
-      "y": -330,
-      "width": 210,
-      "height": 90
-    },
-    {
-      "id": "n-glosario",
-      "type": "file",
-      "file": "10 - Visión general/Glosario.md",
-      "x": -690,
-      "y": -330,
-      "width": 210,
-      "height": 90
-    },
-    {
-      "id": "n-arq-gen",
-      "type": "file",
-      "file": "20 - Arquitectura/Arquitectura general.md",
-      "x": -300,
-      "y": -460,
-      "width": 300,
-      "height": 100,
-      "color": "5"
-    },
-    {
-      "id": "n-integraciones",
-      "type": "file",
-      "file": "20 - Arquitectura/Integraciones.md",
-      "x": 40,
-      "y": -460,
-      "width": 300,
-      "height": 100,
-      "color": "5"
-    },
-    {
-      "id": "n-comp-dash",
-      "type": "file",
-      "file": "20 - Arquitectura/Componentes/Módulo Dashboard y Enrutamiento de Workflows.md",
-      "x": -300,
-      "y": -320,
-      "width": 640,
-      "height": 100,
-      "color": "1"
-    },
-    {
-      "id": "n-comp-ingesta",
-      "type": "file",
-      "file": "20 - Arquitectura/Componentes/Motor de Ingesta y Subida de Medios.md",
-      "x": -300,
-      "y": -190,
-      "width": 300,
-      "height": 100
-    },
-    {
-      "id": "n-comp-curacion",
-      "type": "file",
-      "file": "20 - Arquitectura/Componentes/Motor de Curación IA y Configuración de Clips.md",
-      "x": 40,
-      "y": -190,
-      "width": 300,
-      "height": 100
-    },
-    {
-      "id": "n-comp-autoimport",
-      "type": "file",
-      "file": "20 - Arquitectura/Componentes/Sistema de Auto-Importación de YouTube.md",
-      "x": -300,
-      "y": -60,
-      "width": 300,
-      "height": 100
-    },
-    {
-      "id": "n-comp-brand",
-      "type": "file",
-      "file": "20 - Arquitectura/Componentes/Motor de Plantillas de Marca y Subtítulos.md",
-      "x": 40,
-      "y": -60,
-      "width": 300,
-      "height": 100
-    },
-    {
-      "id": "n-comp-proyectos",
-      "type": "file",
-      "file": "20 - Arquitectura/Componentes/Gestor de Proyectos Colecciones y Búsqueda.md",
-      "x": -300,
-      "y": 70,
-      "width": 300,
-      "height": 100
-    },
-    {
-      "id": "n-comp-editor",
-      "type": "file",
-      "file": "20 - Arquitectura/Componentes/Editor Multipista y Renderizado.md",
-      "x": 40,
-      "y": 70,
-      "width": 300,
-      "height": 100
-    },
-    {
-      "id": "n-comp-creditos",
-      "type": "file",
-      "file": "20 - Arquitectura/Componentes/Sistema de Créditos Planes y Facturación.md",
-      "x": -300,
-      "y": 200,
-      "width": 300,
-      "height": 100
-    },
-    {
-      "id": "n-comp-campanas",
-      "type": "file",
-      "file": "20 - Arquitectura/Componentes/Campañas y Marketplace de Clippers.md",
-      "x": 40,
-      "y": 200,
-      "width": 300,
-      "height": 100
-    },
-    {
-      "id": "n-flujo-auth",
-      "type": "file",
-      "file": "30 - Flujos y procesos/Flujo de Autenticación y Bootstrap de Sesión.md",
-      "x": 520,
-      "y": -460,
-      "width": 480,
-      "height": 90,
-      "color": "2"
-    },
-    {
-      "id": "n-flujo-subida",
-      "type": "file",
-      "file": "30 - Flujos y procesos/Flujo de Subida y Creación de Proyecto de Clipping.md",
-      "x": 520,
-      "y": -340,
-      "width": 480,
-      "height": 90,
-      "color": "2"
-    },
-    {
-      "id": "n-flujo-edicion",
-      "type": "file",
-      "file": "30 - Flujos y procesos/Flujo de Edición Renderizado y Exportación NLE.md",
-      "x": 520,
-      "y": -220,
-      "width": 480,
-      "height": 90,
-      "color": "2"
-    },
-    {
-      "id": "n-flujo-creditos",
-      "type": "file",
-      "file": "30 - Flujos y procesos/Flujo de Consumo Congelamiento y Reembolso de Créditos.md",
-      "x": 520,
-      "y": -100,
-      "width": 480,
-      "height": 90,
-      "color": "2"
-    },
-    {
-      "id": "n-datos-jotai",
-      "type": "file",
-      "file": "40 - Datos/Modelo de datos y Estado Global Jotai.md",
-      "x": 520,
-      "y": 160,
-      "width": 480,
-      "height": 95,
-      "color": "6"
-    },
-    {
-      "id": "n-ref-api",
-      "type": "file",
-      "file": "80 - Referencia/Referencia de Endpoints API Backend.md",
-      "x": 520,
-      "y": 280,
-      "width": 480,
-      "height": 95,
-      "color": "6"
-    },
-    {
-      "id": "n-ref-statsig",
-      "type": "file",
-      "file": "80 - Referencia/Catálogo de Feature Gates y Experimentos Statsig.md",
-      "x": 520,
-      "y": 400,
-      "width": 230,
-      "height": 95
-    },
-    {
-      "id": "n-ref-evidencia",
-      "type": "file",
-      "file": "80 - Referencia/Registro de Evidencia REA.md",
-      "x": 770,
-      "y": 400,
-      "width": 230,
-      "height": 95
-    }
-  ],
-  "edges": [
-    {
-      "id": "e-1",
-      "fromNode": "n-inicio",
-      "fromSide": "right",
-      "toNode": "n-arq-gen",
-      "toSide": "left",
-      "label": "arquitectura"
-    },
-    {
-      "id": "e-2",
-      "fromNode": "n-arq-gen",
-      "fromSide": "bottom",
-      "toNode": "n-comp-dash",
-      "toSide": "top",
-      "label": "monta módulo 575013"
-    },
-    {
-      "id": "e-3",
-      "fromNode": "n-comp-dash",
-      "fromSide": "bottom",
-      "toNode": "n-comp-ingesta",
-      "toSide": "top",
-      "label": "recibe video"
-    },
-    {
-      "id": "e-4",
-      "fromNode": "n-comp-dash",
-      "fromSide": "bottom",
-      "toNode": "n-comp-curacion",
-      "toSide": "top",
-      "label": "configura IA"
-    },
-    {
-      "id": "e-5",
-      "fromNode": "n-comp-dash",
-      "fromSide": "right",
-      "toNode": "n-flujo-auth",
-      "toSide": "left",
-      "label": "verifica sesión"
-    },
-    {
-      "id": "e-6",
-      "fromNode": "n-comp-ingesta",
-      "fromSide": "right",
-      "toNode": "n-flujo-subida",
-      "toSide": "left",
-      "label": "preflight + POST /clip-projects"
-    },
-    {
-      "id": "e-7",
-      "fromNode": "n-comp-proyectos",
-      "fromSide": "right",
-      "toNode": "n-datos-jotai",
-      "toSide": "left",
-      "label": "lee/escribe átomos"
-    },
-    {
-      "id": "e-8",
-      "fromNode": "n-comp-creditos",
-      "fromSide": "right",
-      "toNode": "n-flujo-creditos",
-      "toSide": "left",
-      "label": "congela y liquida"
-    },
-    {
-      "id": "e-9",
-      "fromNode": "n-datos-jotai",
-      "fromSide": "bottom",
-      "toNode": "n-ref-api",
-      "toSide": "top",
-      "label": "sincroniza con API"
-    }
-  ]
+	"nodes":[
+		{"id":"grp-vision","type":"group","x":-960,"y":-520,"width":520,"height":420,"label":"10 - Visión General y Negocio","color":"4"},
+		{"id":"grp-arq","type":"group","x":-340,"y":-520,"width":720,"height":960,"label":"20 - Arquitectura y Subsistemas del Dashboard","color":"5"},
+		{"id":"grp-flujos","type":"group","x":480,"y":-520,"width":560,"height":560,"label":"30 - Flujos Operativos y Procesos","color":"2"},
+		{"id":"grp-datos-ref","type":"group","x":480,"y":100,"width":560,"height":520,"label":"40 / 60 / 80 - Datos, Operación y Evidencia REA","color":"6"},
+		{"id":"n-inicio","type":"file","file":"00 - Inicio.md","x":-920,"y":-460,"width":440,"height":100,"color":"4"},
+		{"id":"n-resumen","type":"file","file":"10 - Visión general/Resumen ejecutivo.md","x":-920,"y":-330,"width":210,"height":90},
+		{"id":"n-glosario","type":"file","file":"10 - Visión general/Glosario.md","x":-690,"y":-330,"width":210,"height":90},
+		{"id":"n-arq-gen","type":"file","file":"20 - Arquitectura/Arquitectura general.md","x":-300,"y":-460,"width":300,"height":100,"color":"5"},
+		{"id":"n-integraciones","type":"file","file":"20 - Arquitectura/Integraciones.md","x":40,"y":-460,"width":300,"height":100,"color":"5"},
+		{"id":"n-comp-dash","type":"file","file":"20 - Arquitectura/Componentes/Módulo Dashboard y Enrutamiento de Workflows.md","x":-300,"y":-320,"width":640,"height":100,"color":"1"},
+		{"id":"n-comp-ingesta","type":"file","file":"20 - Arquitectura/Componentes/Motor de Ingesta y Subida de Medios.md","x":-300,"y":-190,"width":300,"height":100},
+		{"id":"n-comp-curacion","type":"file","file":"20 - Arquitectura/Componentes/Motor de Curación IA y Configuración de Clips.md","x":40,"y":-190,"width":300,"height":100},
+		{"id":"n-comp-autoimport","type":"file","file":"20 - Arquitectura/Componentes/Sistema de Auto-Importación de YouTube.md","x":-300,"y":-60,"width":300,"height":100},
+		{"id":"n-comp-brand","type":"file","file":"20 - Arquitectura/Componentes/Motor de Plantillas de Marca y Subtítulos.md","x":40,"y":-60,"width":300,"height":100},
+		{"id":"n-comp-proyectos","type":"file","file":"20 - Arquitectura/Componentes/Gestor de Proyectos Colecciones y Búsqueda.md","x":-300,"y":70,"width":300,"height":100},
+		{"id":"n-comp-editor","type":"file","file":"20 - Arquitectura/Componentes/Editor Multipista y Renderizado.md","x":40,"y":70,"width":300,"height":100},
+		{"id":"n-comp-creditos","type":"file","file":"20 - Arquitectura/Componentes/Sistema de Créditos Planes y Facturación.md","x":-300,"y":200,"width":300,"height":100},
+		{"id":"n-comp-campanas","type":"file","file":"20 - Arquitectura/Componentes/Campañas y Marketplace de Clippers.md","x":40,"y":200,"width":300,"height":100},
+		{"id":"n-flujo-auth","type":"file","file":"30 - Flujos y procesos/Flujo de Autenticación y Bootstrap de Sesión.md","x":520,"y":-460,"width":480,"height":90,"color":"2"},
+		{"id":"n-flujo-subida","type":"file","file":"30 - Flujos y procesos/Flujo de Subida y Creación de Proyecto de Clipping.md","x":520,"y":-340,"width":480,"height":90,"color":"2"},
+		{"id":"n-flujo-edicion","type":"file","file":"30 - Flujos y procesos/Flujo de Edición Renderizado y Exportación NLE.md","x":520,"y":-220,"width":480,"height":90,"color":"2"},
+		{"id":"n-flujo-creditos","type":"file","file":"30 - Flujos y procesos/Flujo de Consumo Congelamiento y Reembolso de Créditos.md","x":520,"y":-100,"width":480,"height":90,"color":"2"},
+		{"id":"n-datos-jotai","type":"file","file":"40 - Datos/Modelo de datos y Estado Global Jotai.md","x":520,"y":160,"width":480,"height":95,"color":"6"},
+		{"id":"n-ref-api","type":"file","file":"80 - Referencia/Referencia de Endpoints API Backend.md","x":520,"y":280,"width":480,"height":95,"color":"6"},
+		{"id":"n-ref-statsig","type":"file","file":"80 - Referencia/Catálogo de Feature Gates y Experimentos Statsig.md","x":520,"y":400,"width":230,"height":95},
+		{"id":"n-ref-evidencia","type":"file","file":"80 - Referencia/Registro de Evidencia REA.md","x":770,"y":400,"width":230,"height":95}
+	],
+	"edges":[
+		{"id":"e-1","fromNode":"n-inicio","fromSide":"right","toNode":"n-arq-gen","toSide":"left","label":"arquitectura"},
+		{"id":"e-2","fromNode":"n-arq-gen","fromSide":"bottom","toNode":"n-comp-dash","toSide":"top","label":"monta módulo 575013"},
+		{"id":"e-3","fromNode":"n-comp-dash","fromSide":"bottom","toNode":"n-comp-ingesta","toSide":"top","label":"recibe video"},
+		{"id":"e-4","fromNode":"n-comp-dash","fromSide":"bottom","toNode":"n-comp-curacion","toSide":"top","label":"configura IA"},
+		{"id":"e-5","fromNode":"n-comp-dash","fromSide":"right","toNode":"n-flujo-auth","toSide":"left","label":"verifica sesión"},
+		{"id":"e-6","fromNode":"n-comp-ingesta","fromSide":"right","toNode":"n-flujo-subida","toSide":"left","label":"preflight + POST /clip-projects"},
+		{"id":"e-7","fromNode":"n-comp-proyectos","fromSide":"right","toNode":"n-datos-jotai","toSide":"left","label":"lee/escribe átomos"},
+		{"id":"e-8","fromNode":"n-comp-creditos","fromSide":"right","toNode":"n-flujo-creditos","toSide":"left","label":"congela y liquida"},
+		{"id":"e-9","fromNode":"n-datos-jotai","fromSide":"bottom","toNode":"n-ref-api","toSide":"top","label":"sincroniza con API"}
+	]
 }
