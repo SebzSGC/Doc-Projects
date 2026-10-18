@@ -85,6 +85,7 @@ El diagrama superior muestra la organización del vault en nueve áreas temátic
 ### 📘 50 — [[Guías]]
 - [[Primeros pasos]] — Cómo recorrer esta documentación y localizar cualquier función del código original de OpusClip.
 - [[Cómo reproducir y auditar el bundle con REA]] — Paso a paso reproducible con comandos MCP de REA (`capture_browser_scenario`, `inspect_web_page`, `export_web_scripts`, `analyze_javascript_application`).
+- [[Cómo ejecutar y usar la réplica local ClippersIppers]] — Cómo levantar y usar la réplica funcional local (`D:\rea-projects\ClippersIppers`) en `http://localhost:3040`.
 
 ### ⚙️ 60 — [[Operación]]
 - [[Despliegue y CDN]] — Topología de dominios (`clip.opus.pro`, `api.opus.pro`, `public.cdn.opus.pro`, `stg-api.opus.pro`), caché de chunks y seguridad en cabeceras.

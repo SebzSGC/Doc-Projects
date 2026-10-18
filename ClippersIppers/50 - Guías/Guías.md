@@ -21,9 +21,10 @@ etiquetas:
 flowchart LR
     Guias["📘 Guías (MOC)"] --> G1["🚀 Primeros pasos<br/>(Cómo navegar el vault y localizar código)"]
     Guias --> G2["🔬 Cómo reproducir y auditar el bundle con REA<br/>(Runbook completo con herramientas MCP)"]
+    Guias --> G3["💻 Cómo ejecutar y usar la réplica local ClippersIppers<br/>(Aplicación Next.js 15 local en puerto 3040)"]
 ```
 
-El diagrama muestra las dos guías disponibles: una orientada a cualquier lector que se incorpora al proyecto y otra orientada a ingenieros de reversing que deseen auditar nuevas versiones de OpusClip.
+El diagrama muestra las tres guías disponibles: una orientada a cualquier lector que se incorpora al proyecto, otra orientada a ingenieros de reversing que deseen auditar nuevas versiones de OpusClip y una tercera para ejecutar la réplica funcional local en `D:\rea-projects\ClippersIppers`.
 
 > [!example] Ejemplo real: Auditar un cambio en una nueva versión de OpusClip
 > Si OpusClip despliega un nuevo `buildId` la próxima semana, siguiendo [[Cómo reproducir y auditar el bundle con REA]] podrás capturar el nuevo `_buildManifest.js`, exportar los chunks actualizados y usar `compare_application_versions` de REA para detectar exactamente qué funciones, endpoints o Feature Gates cambiaron respecto a la versión `tw0-OiEO15o4q3nmL5clA`.
@@ -36,6 +37,7 @@ El diagrama muestra las dos guías disponibles: una orientada a cualquier lector
 |---|---|---|
 | [[Primeros pasos]] | Todos (Producto, Diseño, Desarrollo, QA) | 5 minutos |
 | [[Cómo reproducir y auditar el bundle con REA]] | Desarrolladores / Analistas de Ingeniería Inversa | 15 minutos |
+| [[Cómo ejecutar y usar la réplica local ClippersIppers]] | Todos (Ejecución local de la aplicación replicada) | 5 minutos |
 
 ---
 
