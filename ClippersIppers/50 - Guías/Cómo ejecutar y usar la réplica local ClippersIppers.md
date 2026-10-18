@@ -55,8 +55,8 @@ El diagrama superior resume el recorrido principal dentro de la aplicación loca
 |---|---|---|
 | `/dashboard` | `575013`, `561806`, `811849`, `383241` | Conmutación en vivo entre **OpusClip 4.0 (`DashboardRevampEntry`)** y **Dashboard Clásico (`SubmitCard`)**, carga de archivos con `MultipartUploader`, cohorte en progreso con botones para liquidar (`COMPLETE`) o estancar (`STALLED`), proyectos demo con sus gradientes originales, `What's New` expandible y `Master OpusClip`. |
 | `/workflow` | `536571`, `265539`, `286660`, `277924` | Recortador de rango temporal (`startSec`–`endSec`), selector de las 7 recetas nativas (`builtin:*`), prompts multimodales de [[Glosario#ClipAnything|ClipAnything]] y calculadora exacta de créditos (incluyendo exención `ProAnnual` para videos `< 30 min` y `< 1080p`). |
-| `/clip/[id]` | `CuratedClipResults` | Tarjetas de clips con `Virality Score (0–99)`, desglose `Hook / Flow / Value / Trend`, previsualizador con subtítulos karaoke sincronizados, filtros por palabra clave y descarga real de archivos `.srt` y `.xml`. |
-| `/editor-ux/[clipId]` | `138iloj2ieje2.css`, `3j-a1bzfy7_ix.css` | Editor NLE de 4 zonas: corte por transcripción, resaltado karaoke de 2 colores, caja de reencuadre `.moveable-control-box` (`#4af` rostro / `#e35600` pantalla), guías `.moveable-CustomGridGuidelines` y línea de tiempo de 5 pistas. |
+| `/clip/[id]` | `CuratedClipResults` | Tarjetas de clips con `Virality Score (0–99)`, reproductor `<video>` MP4 nativo en `9:16` (sin interfaz de YouTube), subtítulos karaoke multifrase 100% reales extraídos palabra por palabra desde YouTube Innertube, sincronización exacta con el reloj de audio y descarga directa de `.mp4`, `.srt` y `.xml`. |
+| `/editor-ux/[clipId]` | `138iloj2ieje2.css`, `3j-a1bzfy7_ix.css` | Editor NLE de 4 zonas con corte de video real basado en texto (**Jump-Cut Engine**: al recortar una palabra o muletilla, el reproductor MP4 salta automáticamente ese fragmento), controles interactivos de encuadre horizontal (`cropX` 0%–100%), `zoom`, modo `Split Screen` dual y línea de tiempo de 5 pistas. |
 | `/brand-template` | `3icf7l4ivv-o7.css` | Creador de [[Glosario#Brand Kit|Brand Kits]] con las 6 animaciones CSS originales (`simple-words-pop`, `marker-sweep`, `breathe-scale-wiggle`, `slide-in-from-top`, `word-cut`, `individual-focus`). |
 | `/projects`, `/collections`, `/favorites`, `/library` | `811849` | Gestión de retención de almacenamiento (`PERMANENT` vs `TEMPORARY`), colecciones públicas/privadas, favoritos y biblioteca de activos de marca. |
 | `/calendar`, `/analytics`, `/campaigns` | `575013` | Programador de publicaciones sociales, curva de retención de los primeros 60 segundos y marketplace de campañas para clippers con tarifa CPM. |
@@ -64,20 +64,20 @@ El diagrama superior resume el recorrido principal dentro de la aplicación loca
 
 ---
 
-## 🧠 Conexión con Motores de IA (Google Gemini, Groq y OpenAI)
+## 🧠 Extracción Real de Audio/Subtítulos (YouTube Innertube) y Motores de IA
 
-Para que el extractor transcriba el audio auténtico palabra por palabra y detecte los ganchos virales reales de cualquier video:
+La réplica local combina la extracción directa de pistas ASR (`json3`) y flujo `video/mp4` desde la API Innertube de YouTube (`src/lib/youtubeInnertube.ts` y `/api/video-stream`) con curación asistida por IA:
 
-1. **Abrir el modal de conexión**:
-   - Haz clic en el botón superior **«Conectar IA»** o en el botón morado dentro de `/workflow`.
-2. **Seleccionar el proveedor deseado**:
-   - **Google Gemini (Recomendado / Gratuito)**: Obtén tu clave en [Google AI Studio](https://aistudio.google.com/app/apikey) sin costo ni tarjeta de crédito. Utiliza `gemini-2.0-flash`.
-   - **Groq Cloud (Ultra Rápido)**: Obtén tu clave en [Groq Console](https://console.groq.com/keys) para transcripciones y curación con `llama-3.3-70b-versatile`.
+1. **Transcripción Real Palabra por Palabra y Video MP4 Directo (Sin requerir clave API)**:
+   - Al procesar cualquier enlace de YouTube, el servidor extrae la pista de subtítulos real con precisión de milisegundos (`tStartMs` + `tOffsetMs`) y el stream `video/mp4` directo (`itag 18`) con soporte `HTTP 206 Partial Content`.
+   - Si tenías un proyecto creado con una versión anterior, basta con abrir `/clip/[id]` (o pulsar **«Sincronizar Video y Subtítulos Reales»**) para actualizarlo automáticamente al video MP4 limpio y los subtítulos reales.
+2. **Conexión Opcional con Motores de IA (Google Gemini, Groq y OpenAI)**:
+   - Haz clic en el botón superior **«Conectar IA»** o en el botón dentro de `/workflow`.
+   - **Google Gemini (Recomendado / Gratuito)**: Obtén tu clave en [Google AI Studio](https://aistudio.google.com/app/apikey). El sistema detecta automáticamente el modelo disponible (`gemini-3.8-flash`, `gemini-2.5-flash` o `gemini-1.5-flash`).
+   - **Groq Cloud (Ultra Rápido)**: Obtén tu clave en [Groq Console](https://console.groq.com/keys) para curación con `llama-3.3-70b-versatile`.
    - **OpenAI**: Utiliza tu clave de OpenAI para procesamiento con `gpt-4o-mini`.
-3. **Probar y Guardar**:
-   - Pega tu clave API y pulsa **«Probar y Guardar Clave»**. El sistema realiza una llamada de verificación a `/api/ai-test` y guarda el estado en `localStorage`.
-4. **Generación con IA en `/workflow`**:
-   - Al pulsar **«Generar Clips Instantáneamente»**, la aplicación contacta a `/api/ai-curate`, analiza la temática del video, genera los 3 mejores cortes con sus marcas de tiempo exactas (`startSec` y `endSec`) y construye los subtítulos palabra por palabra.
+3. **Curación sobre el Guion Real en `/workflow`**:
+   - Al pulsar **«Generar Clips Instantáneamente»**, `/api/ai-curate` envía la transcripción real con marcas de tiempo (`[MM:SS]`) al modelo de IA para elegir los 3 momentos más virales y recorta exactamente las palabras reales pronunciadas en el video para cada clip.
 
 ---
 

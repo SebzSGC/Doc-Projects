@@ -18,17 +18,28 @@ etiquetas:
 
 ```mermaid
 flowchart LR
-    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial + Vault Obsidian"] --> V2["📅 2026-10-18 — v1.1.0<br/>Construcción Réplica Local Next.js 15"] --> V3["📅 2026-10-18 — v1.2.0<br/>Inspección en vivo URLs YouTube"] --> V4["📅 2026-10-18 — v1.3.0<br/>Integración Motores IA (Gemini / Groq)<br/>Curación y Subtítulos Auténticos"]
+    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial"] --> V2["📅 2026-10-18 — v1.1.0<br/>Réplica Local Next.js 15"] --> V3["📅 2026-10-18 — v1.2.0<br/>Inspección URLs YouTube"] --> V4["📅 2026-10-18 — v1.3.0<br/>Motores IA (Gemini / Groq)"] --> V5["📅 2026-10-18 — v1.4.0<br/>Stream MP4 Directo + Subtítulos ASR Reales<br/>+ Editor NLE Jump-Cut"]
 ```
 
-El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`), la construcción de la réplica local (`v1.1.0`), la ingesta dinámica de YouTube (`v1.2.0`) y la integración de IA para curación y transcripción real (`v1.3.0`).
+El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`), la construcción de la réplica local (`v1.1.0`), la ingesta dinámica de YouTube (`v1.2.0`), la integración de IA (`v1.3.0`) y la sincronización de flujo MP4 nativo con transcripción palabra por palabra real y edición NLE por corte de texto (`v1.4.0`).
 
 > [!example] Ejemplo real: Trazabilidad de versión de OpusClip auditada
-> La versión `v1.0.0` de esta documentación corresponde exactamente al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, la versión `v1.1.0` materializa todos sus módulos en una aplicación local en `http://localhost:3040`, la versión `v1.2.0` añade ingesta dinámica para YouTube, y la versión `v1.3.0` conecta modelos de IA (Gemini, Groq, OpenAI) para transcribir y recortar clips auténticos.
+> La versión `v1.0.0` de esta documentación corresponde exactamente al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, la versión `v1.1.0` materializa todos sus módulos en una aplicación local en `http://localhost:3040`, y la versión `v1.4.0` extrae el stream `video/mp4` directo y la pista ASR `json3` palabra por palabra desde YouTube Innertube para un recorte vertical `9:16` limpio y sincronizado al milisegundo.
 
 ---
 
 ## 📜 Bitácora de versiones
+
+### `v1.4.0` — 2026-10-18 (Flujo MP4 Nativo 9:16, Subtítulos Reales Innertube y Editor NLE Jump-Cut)
+- **⚠️ Cambia para ti**:
+  - **Adiós al iframe de YouTube deformado**: Tanto en la vista de resultados (`/clip/[id]`) como en el editor NLE (`/editor-ux/[clipId]`), los clips se reproducen mediante un elemento `<video>` HTML5 nativo recortado limpiamente a formato vertical `9:16` (`object-cover`), sin barras negras ni controles superpuestos de YouTube, e incluyen botón de **«Descargar MP4»**.
+  - **Subtítulos 100% reales y sincronizados con el audio**: Se eliminó el temporizador en bucle (`setInterval`) que hacía avanzar la transcripción sola. Ahora el sistema extrae la transcripción real palabra por palabra del video de YouTube con tiempos exactos en milisegundos y sincroniza el karaoke exclusivamente con el evento `onTimeUpdate` del reproductor de video.
+  - **Editor NLE con corte real por texto (Jump-Cut) y reencuadre interactivo**: Al recortar cualquier palabra o muletilla en `/editor-ux/[clipId]`, el reproductor salta automáticamente ese fragmento durante la reproducción. Además, puedes arrastrar el lienzo o usar los deslizadores de **Encuadre 9:16 (`cropX` 0%–100%)**, **Zoom (`1.0x`–`2.2x`)** y **Rango (`startSec` / `endSec`)**.
+- **Implementación Técnica**:
+  - Creación de `src/lib/youtubeInnertube.ts` utilizando los clientes Innertube `ANDROID` (`20.03.32`) e `IOS` (`20.03.02`) para extraer el stream `video/mp4` directo (`itag 18`) y la pista `json3` con offsets por palabra (`tStartMs` + `tOffsetMs`).
+  - Creación del proxy de streaming `/api/video-stream` con soporte `HTTP 206 Partial Content` (`Range` bytes) para salto instantáneo (`#t=start,end`) y descarga directa.
+  - Actualización de `/api/ai-curate`, `src/app/clip/[id]/page.tsx` (con auto-actualización de proyectos existentes en `localStorage`) y `src/app/editor-ux/[clipId]/page.tsx`.
+  - Actualización de prioridad de modelos Gemini a `gemini-3.8-flash` / `gemini-2.5-flash` en `/api/ai-test` y `/api/ai-curate`.
 
 ### `v1.3.0` — 2026-10-18 (Integración de Motores de IA para Extracción y Curación Real)
 - **⚠️ Cambia para ti**:
