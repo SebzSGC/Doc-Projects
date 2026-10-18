@@ -18,17 +18,27 @@ etiquetas:
 
 ```mermaid
 flowchart LR
-    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial"] --> V2["📅 2026-10-18 — v1.1.0<br/>Réplica Local Next.js 15"] --> V3["📅 2026-10-18 — v1.2.0<br/>Inspección URLs YouTube"] --> V4["📅 2026-10-18 — v1.3.0<br/>Motores IA (Gemini / Groq)"] --> V5["📅 2026-10-18 — v1.4.0<br/>Stream MP4 + Subtítulos ASR"] --> V6["📅 2026-10-18 — v1.5.0<br/>Rediseño Minimalista Creativo"] --> V7["📅 2026-10-18 — v1.6.0<br/>Depuración de Pausas/Ruido<br/>+ Fuente Josefin Sans"] --> V8["📅 2026-10-18 — v1.7.0<br/>Optimización Tokens API<br/>+ Auto-Zoom y Encuadre"]
+    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial"] --> V2["📅 2026-10-18 — v1.1.0<br/>Réplica Local Next.js 15"] --> V3["📅 2026-10-18 — v1.2.0<br/>Inspección URLs YouTube"] --> V4["📅 2026-10-18 — v1.3.0<br/>Motores IA (Gemini / Groq)"] --> V5["📅 2026-10-18 — v1.4.0<br/>Stream MP4 + Subtítulos ASR"] --> V6["📅 2026-10-18 — v1.5.0<br/>Rediseño Minimalista Creativo"] --> V7["📅 2026-10-18 — v1.6.0<br/>Depuración de Pausas/Ruido<br/>+ Fuente Josefin Sans"] --> V8["📅 2026-10-18 — v1.7.0<br/>Optimización Tokens API<br/>+ Auto-Zoom y Encuadre"] --> V9["📅 2026-10-18 — v1.8.0<br/>Descarga de Clip Real<br/>+ Subtítulos Coherentes"]
 ```
 
-El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`), la construcción de la réplica local (`v1.1.0`), la ingesta dinámica de YouTube (`v1.2.0`), la integración de IA (`v1.3.0`), la sincronización de flujo MP4 nativo (`v1.4.0`), el rediseño integral minimalista creativo (`v1.5.0`), la depuración de transcripción con tipografía editorial Josefin Sans (`v1.6.0`) y la optimización de llamadas API con auto-zoom y auto-encuadre inteligentes (`v1.7.0`).
+El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`), la construcción de la réplica local (`v1.1.0`), la ingesta dinámica de YouTube (`v1.2.0`), la integración de IA (`v1.3.0`), la sincronización de flujo MP4 nativo (`v1.4.0`), el rediseño integral minimalista creativo (`v1.5.0`), la depuración de transcripción con tipografía editorial Josefin Sans (`v1.6.0`), la optimización de llamadas API (`v1.7.0`) y la descarga directa de clips recortados con subtítulos naturales sin desfaces temporales (`v1.8.0`).
 
 > [!example] Ejemplo real: Trazabilidad de versión de OpusClip auditada
-> La versión `v1.0.0` de esta documentación corresponde al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, la versión `v1.1.0` materializó la aplicación local en `http://localhost:3040`, la versión `v1.5.0` transformó la experiencia en un estudio de IA minimalista y premium, la versión `v1.6.0` perfeccionó la visualización de texto con Josefin Sans, y la versión `v1.7.0` maximiza el rendimiento eliminando llamadas redundantes a la API de IA e integrando reencuadre y zoom dinámicos.
+> La versión `v1.0.0` de esta documentación corresponde al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, la versión `v1.1.0` materializó la aplicación local en `http://localhost:3040`, la versión `v1.5.0` transformó la experiencia en un estudio de IA minimalista y premium, la versión `v1.6.0` perfeccionó la visualización de texto con Josefin Sans, la versión `v1.7.0` maximizó el rendimiento de tokens y auto-edición, y la versión `v1.8.0` materializa la descarga efectiva del clip 9:16 y el fraseo natural de subtítulos sin saltos al futuro.
 
 ---
 
 ## 📜 Bitácora de versiones
+
+### `v1.8.0` — 2026-10-18 (Descarga Real del Clip Recortado y Subtítulos Naturales Coherentes)
+- **⚠️ Cambia para ti**:
+  - **Descarga directa del clip (no del video completo)**: Se implementó la opción de **«Descargar Clip»** tanto en la vista previa del clip (`/clip/[id]`) como en el editor NLE (`/editor-ux/[clipId]`). Permite descargar el segmento exacto (ej. 35s–50s) en formato vertical 9:16 con los subtítulos en Josefin Sans quemados y audio sincronizado, visualizando una barra flotante de progreso en tiempo real. También se mantiene el botón **«Video Completo»** si deseas descargar la fuente íntegra.
+  - **Subtítulos con fraseo natural y sin palabras del futuro**: Se eliminó la división rígida por grupos de 4 palabras por índice. El nuevo algoritmo `getNaturalSubtitlePhrase` agrupa las palabras por proximidad temporal (pausas máximas de `0.45s`) y delimitación por puntuación (`.`, `!`, `?`). Si el orador dice «¡Uf!» y hace una pausa de 5 segundos, el subtítulo muestra únicamente «¡Uf!» y desaparece en el silencio, sin pegarle la frase de 5 segundos después.
+- **Implementación Técnica**:
+  - `src/lib/transcriptUtils.ts`: Creación de la función `getNaturalSubtitlePhrase` con límites de pausa de 450ms, corte en signos de puntuación y supresión de palabras con desfase mayor a 850ms del cabezal de reproducción.
+  - `src/lib/clipExporter.ts`: Módulo de renderizado y exportación en Canvas 2D + `MediaRecorder` a 720x1280 (9:16) con velocidad acelerada (2x) y soporte para descarga de streams directos.
+  - `src/app/api/export-clip/route.ts`: Endpoint de recorte rápido con `-c copy` para descarga instantánea en servidor cuando FFmpeg está presente.
+  - `src/app/clip/[id]/page.tsx` y `src/app/editor-ux/[clipId]/page.tsx`: Reemplazo del botón único por «Descargar Clip» y «Video Completo», barra flotante de porcentaje y adopción de `getNaturalSubtitlePhrase`.
 
 ### `v1.7.0` — 2026-10-18 (Optimización de Tokens API, Centrado de Play, Subtítulos en Silencio y Auto-Edición Reactiva)
 - **⚠️ Cambia para ti**:
