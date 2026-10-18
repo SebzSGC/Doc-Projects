@@ -16,24 +16,23 @@ etiquetas:
 # 💻 Cómo ejecutar y usar la réplica local ClippersIppers
 
 > [!abstract] En pocas palabras
-> Esta guía explica cómo poner en marcha y utilizar la réplica local de **OpusClip (`D:\rea-projects\ClippersIppers`)**, construida con **Next.js 15, React 19, TypeScript, Tailwind CSS v4 y Jotai** a partir de los hallazgos de ingeniería inversa documentados en este vault. Permite experimentar sin conexión a la nube con el flujo completo de creación, curación, cálculo de créditos, edición multipista NLE y pruebas de Feature Gates de Statsig.
+> Esta guía explica cómo poner en marcha y utilizar **ClippersIppers (`D:\rea-projects\ClippersIppers`)**, una suite local de edición y curación de video con IA construida con **Next.js 15, React 19, TypeScript, Tailwind CSS v4 y Jotai**. Tras el rediseño v1.5.0, la interfaz adopta una estética **minimalista, creativa y premium (macOS + Creator IA + Linear)** en paleta clara (`#FAFAFC` / `#FFFFFF` / `#E8E8ED` con acento púrpura `#7652E8`), eliminando planes de pago, límites de créditos o pantallas de suscripción para un flujo 100% personal, ilimitado y local.
 
 ```mermaid
 flowchart LR
-    Dev["💻 D:\\rea-projects\\ClippersIppers<br/>(npm.cmd run dev — Puerto 3040)"] --> Dash["🏠 /dashboard<br/>(Revamp 4.0 & Classic 3.5)"]
-    Dash --> Work["⚙️ /workflow<br/>(Recetas + Trimmer + Créditos)"]
-    Work --> Clips["🎬 /clip/[id]<br/>(Virality Score 0-99 + SRT/XML)"]
-    Clips --> NLE["✂️ /editor-ux/[clipId]<br/>(Editor NLE 4 Zonas + 5 Pistas)"]
-    Dash --> Labs["🧪 /opus-labs<br/>(Statsig Gates + CPU Worker)"]
+    Dev["💻 D:\\rea-projects\\ClippersIppers<br/>(npm.cmd run dev — Puerto 3040)"] --> Studio["🏠 /dashboard<br/>(Studio: Entrada Limpia + Extracción Directa)"]
+    Studio --> Workflow["⚙️ /workflow<br/>(Configurador Creativo 2 Columnas)"]
+    Workflow --> Clips["🎬 /clip/[id]<br/>(Clips 9:16 + Subtítulos Reales + Descarga MP4)"]
+    Clips --> NLE["✂️ /editor-ux/[clipId]<br/>(Editor NLE: Jump-Cut + Reencuadre 9:16)"]
 ```
 
-El diagrama superior resume el recorrido principal dentro de la aplicación local ejecutándose en `http://localhost:3040`, conectando la pantalla de entrada (`/dashboard`) con el configurador de recetas (`/workflow`), la vista de clips curados (`/clip/[id]`), el editor no lineal (`/editor-ux/[clipId]`) y el laboratorio de telemetría (`/opus-labs`).
+El diagrama superior resume el flujo principal optimizado en `http://localhost:3040`, conectando el lienzo creativo de entrada (`/dashboard`) con el configurador de clips (`/workflow`), la vista de resultados (`/clip/[id]`) y el editor de video (`/editor-ux/[clipId]`).
 
 > [!example] Ejemplo real: Pegar un enlace de YouTube o subir un archivo MP4 local
-> 1. Abre `http://localhost:3040/dashboard` y pega cualquier enlace de YouTube (ej. `https://www.youtube.com/watch?v=dQw4w9WgXcQ` o cualquier video real).
-> 2. La aplicación consulta el endpoint local `/api/inspect-media`, extrayendo en vivo mediante oEmbed y scraping el título real, el canal, la miniatura maxres y la duración exacta en segundos, mostrando una tarjeta verde de confirmación instantánea.
-> 3. En `/workflow`, el video se reproduce directamente mediante el reproductor embebido de YouTube o `<video>` local, los deslizadores se calibran con la duración real del video y la calculadora computa los créditos exactos.
-> 4. En `/clip/[id]` y `/editor-ux/[clipId]`, descarga los subtítulos `.srt` o el archivo `.xml` para Premiere Pro / DaVinci Resolve, edita palabras en tiempo real y resalta términos clave en dos colores (`#bef737` / `#ffc141`).
+> 1. Abre `http://localhost:3040/dashboard` y pega cualquier enlace de YouTube o arrastra un archivo local.
+> 2. La aplicación detecta en vivo el título, miniatura y duración, ofreciendo selección directa de formato (`9:16 Vertical`, `16:9 Horizontal`, `1:1 Cuadrado`).
+> 3. Con un solo clic en **«Generar Clips con IA»**, el servidor extrae la transcripción palabra por palabra y el flujo MP4 nativo mediante YouTube Innertube.
+> 4. En `/clip/[id]` y `/editor-ux/[clipId]`, visualiza los clips en vertical `9:16` con subtítulos dinámicos sincronizados al audio, realiza cortes de video eliminando palabras de la transcripción y descarga el MP4 o subtítulos `.srt`.
 
 ---
 
@@ -49,18 +48,16 @@ El diagrama superior resume el recorrido principal dentro de la aplicación loca
 
 ---
 
-## 🗺️ Mapa de vistas implementadas frente a los módulos originales
+## 🗺️ Mapa de vistas del flujo creativo principal
 
-| Ruta local | Módulo original replicado | Capacidades interactivas disponibles |
+| Ruta local | Enfoque de diseño y propósito | Capacidades interactivas disponibles |
 |---|---|---|
-| `/dashboard` | `575013`, `561806`, `811849`, `383241` | Conmutación en vivo entre **OpusClip 4.0 (`DashboardRevampEntry`)** y **Dashboard Clásico (`SubmitCard`)**, carga de archivos con `MultipartUploader`, cohorte en progreso con botones para liquidar (`COMPLETE`) o estancar (`STALLED`), proyectos demo con sus gradientes originales, `What's New` expandible y `Master OpusClip`. |
-| `/workflow` | `536571`, `265539`, `286660`, `277924` | Recortador de rango temporal (`startSec`–`endSec`), selector de las 7 recetas nativas (`builtin:*`), prompts multimodales de [[Glosario#ClipAnything|ClipAnything]] y calculadora exacta de créditos (incluyendo exención `ProAnnual` para videos `< 30 min` y `< 1080p`). |
-| `/clip/[id]` | `CuratedClipResults` | Tarjetas de clips con `Virality Score (0–99)`, reproductor `<video>` MP4 nativo en `9:16` (sin interfaz de YouTube), subtítulos karaoke multifrase 100% reales extraídos palabra por palabra desde YouTube Innertube, sincronización exacta con el reloj de audio y descarga directa de `.mp4`, `.srt` y `.xml`. |
-| `/editor-ux/[clipId]` | `138iloj2ieje2.css`, `3j-a1bzfy7_ix.css` | Editor NLE de 4 zonas con corte de video real basado en texto (**Jump-Cut Engine**: al recortar una palabra o muletilla, el reproductor MP4 salta automáticamente ese fragmento), controles interactivos de encuadre horizontal (`cropX` 0%–100%), `zoom`, modo `Split Screen` dual y línea de tiempo de 5 pistas. |
-| `/brand-template` | `3icf7l4ivv-o7.css` | Creador de [[Glosario#Brand Kit|Brand Kits]] con las 6 animaciones CSS originales (`simple-words-pop`, `marker-sweep`, `breathe-scale-wiggle`, `slide-in-from-top`, `word-cut`, `individual-focus`). |
-| `/projects`, `/collections`, `/favorites`, `/library` | `811849` | Gestión de retención de almacenamiento (`PERMANENT` vs `TEMPORARY`), colecciones públicas/privadas, favoritos y biblioteca de activos de marca. |
-| `/calendar`, `/analytics`, `/campaigns` | `575013` | Programador de publicaciones sociales, curva de retención de los primeros 60 segundos y marketplace de campañas para clippers con tarifa CPM. |
-| `/opus-labs` | `681368`, `Statsig` | Interruptores en vivo para los [[Glosario#Feature Gate|Feature Gates]] de Statsig y ejecución real del benchmark de CPU en un `Web Worker` aislado. |
+| `/dashboard` | Studio Creativo Minimalista (macOS / Linear) | Entrada limpia con autodetección de video, subida local de archivos, selector de relación de aspecto (`9:16`, `16:9`, `1:1`), opciones discretas y galería de proyectos locales recientes. |
+| `/workflow` | Configurador de Clips en 2 Columnas | Previsualizador con deslizador de rango temporal (`startSec`–`endSec`), selector de longitud de clips, prompt temático opcional, estilo de subtítulos y conmutador de Auto-Hook sin cobros ni bloqueos de créditos. |
+| `/clip/[id]` | Resultados de Curación de Video | Tarjetas de clips con `Virality Score (0–99)`, reproductor `<video>` MP4 nativo en `9:16` (sin interfaz de YouTube), subtítulos karaoke multifrase 100% reales extraídos palabra por palabra, sincronización exacta con el reloj de audio y descarga directa de `.mp4`, `.srt` y `.xml`. |
+| `/editor-ux/[clipId]` | Editor NLE Jump-Cut | Editor NLE con corte de video real basado en texto (**Jump-Cut Engine**: al recortar una palabra o muletilla, el reproductor MP4 salta automáticamente ese fragmento), controles interactivos de encuadre horizontal (`cropX` 0%–100%), `zoom`, modo `Split Screen` dual y línea de tiempo de 5 pistas. |
+| `/brand-template` | Estudio de Subtítulos | Diseñador de estilos de subtítulos con animación tipográfica, paleta de colores para palabras clave y vista previa interactiva. |
+| `/projects` | Biblioteca de Proyectos | Galería visual de todos los proyectos locales creados con buscador en tiempo real y acceso directo a clips. |
 
 ---
 

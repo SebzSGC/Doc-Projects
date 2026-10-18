@@ -18,17 +18,27 @@ etiquetas:
 
 ```mermaid
 flowchart LR
-    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial"] --> V2["📅 2026-10-18 — v1.1.0<br/>Réplica Local Next.js 15"] --> V3["📅 2026-10-18 — v1.2.0<br/>Inspección URLs YouTube"] --> V4["📅 2026-10-18 — v1.3.0<br/>Motores IA (Gemini / Groq)"] --> V5["📅 2026-10-18 — v1.4.0<br/>Stream MP4 Directo + Subtítulos ASR Reales<br/>+ Editor NLE Jump-Cut"]
+    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial"] --> V2["📅 2026-10-18 — v1.1.0<br/>Réplica Local Next.js 15"] --> V3["📅 2026-10-18 — v1.2.0<br/>Inspección URLs YouTube"] --> V4["📅 2026-10-18 — v1.3.0<br/>Motores IA (Gemini / Groq)"] --> V5["📅 2026-10-18 — v1.4.0<br/>Stream MP4 + Subtítulos ASR"] --> V6["📅 2026-10-18 — v1.5.0<br/>Rediseño Minimalista Creativo<br/>+ Eliminación Tiers / Créditos"]
 ```
 
-El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`), la construcción de la réplica local (`v1.1.0`), la ingesta dinámica de YouTube (`v1.2.0`), la integración de IA (`v1.3.0`) y la sincronización de flujo MP4 nativo con transcripción palabra por palabra real y edición NLE por corte de texto (`v1.4.0`).
+El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`), la construcción de la réplica local (`v1.1.0`), la ingesta dinámica de YouTube (`v1.2.0`), la integración de IA (`v1.3.0`), la sincronización de flujo MP4 nativo (`v1.4.0`) y el rediseño integral minimalista creativo sin límites de planes ni créditos (`v1.5.0`).
 
 > [!example] Ejemplo real: Trazabilidad de versión de OpusClip auditada
-> La versión `v1.0.0` de esta documentación corresponde exactamente al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, la versión `v1.1.0` materializa todos sus módulos en una aplicación local en `http://localhost:3040`, y la versión `v1.4.0` extrae el stream `video/mp4` directo y la pista ASR `json3` palabra por palabra desde YouTube Innertube para un recorte vertical `9:16` limpio y sincronizado al milisegundo.
+> La versión `v1.0.0` de esta documentación corresponde al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, la versión `v1.1.0` materializó la aplicación local en `http://localhost:3040`, y la versión `v1.5.0` transforma la experiencia en un estudio de IA minimalista y premium inspirado en macOS, Creator IA y Linear, eliminando tiers y billeteras de créditos para un uso 100% personal e ilimitado.
 
 ---
 
 ## 📜 Bitácora de versiones
+
+### `v1.5.0` — 2026-10-18 (Rediseño Frontend Minimalista, Creativo y Premium — Sin Tiers ni Créditos)
+- **⚠️ Cambia para ti**:
+  - **Experiencia 100% personal y sin límites**: Se eliminaron completamente todos los componentes de cobro, planes de suscripción (`Free`, `Pro`, `Enterprise`), billeteras de créditos, balances congelados, calculadoras de sobrecostos y modales de pago. Ahora la generación y edición de clips es ilimitada y local.
+  - **Estética Minimalista Creativa (macOS + Creator IA + Linear)**: Se implementó un nuevo sistema de diseño con paleta predominantemente clara (`#FAFAFC` de fondo, superficies `#FFFFFF` y `#F4F4F7`, bordes sutiles `#E8E8ED` y acento púrpura creativo `#7652E8`), tipografía de alta jerarquía y micro-sombras limpias.
+  - **Studio Simplificado y Enfocado**: El dashboard se simplificó en un cuadro de generación amplio y elegante con autodetección de video, selector directo de formato vertical/horizontal y biblioteca visual de proyectos locales. En `/workflow`, la configuración se redujo a dos columnas con previsualizador, selector de duración y controles esenciales sin saturar la pantalla.
+- **Implementación Técnica**:
+  - Actualización de tokens de color y micro-sombras en `src/app/globals.css`.
+  - Reescritura minimalista de `src/components/layout/AppShell.tsx` y `src/components/layout/GlobalModals.tsx`.
+  - Simplificación del Studio en `src/app/dashboard/page.tsx`, `src/app/workflow/page.tsx`, `src/app/projects/page.tsx` y `src/app/clip/[id]/page.tsx`.
 
 ### `v1.4.0` — 2026-10-18 (Flujo MP4 Nativo 9:16, Subtítulos Reales Innertube y Editor NLE Jump-Cut)
 - **⚠️ Cambia para ti**:
