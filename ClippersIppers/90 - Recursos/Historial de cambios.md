@@ -18,17 +18,28 @@ etiquetas:
 
 ```mermaid
 flowchart LR
-    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial"] --> V2["📅 2026-10-18 — v1.1.0<br/>Réplica Local Next.js 15"] --> V3["📅 2026-10-18 — v1.2.0<br/>Inspección URLs YouTube"] --> V4["📅 2026-10-18 — v1.3.0<br/>Motores IA (Gemini / Groq)"] --> V5["📅 2026-10-18 — v1.4.0<br/>Stream MP4 + Subtítulos ASR"] --> V6["📅 2026-10-18 — v1.5.0<br/>Rediseño Minimalista Creativo"] --> V7["📅 2026-10-18 — v1.6.0<br/>Depuración de Pausas/Ruido<br/>+ Fuente Josefin Sans"]
+    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial"] --> V2["📅 2026-10-18 — v1.1.0<br/>Réplica Local Next.js 15"] --> V3["📅 2026-10-18 — v1.2.0<br/>Inspección URLs YouTube"] --> V4["📅 2026-10-18 — v1.3.0<br/>Motores IA (Gemini / Groq)"] --> V5["📅 2026-10-18 — v1.4.0<br/>Stream MP4 + Subtítulos ASR"] --> V6["📅 2026-10-18 — v1.5.0<br/>Rediseño Minimalista Creativo"] --> V7["📅 2026-10-18 — v1.6.0<br/>Depuración de Pausas/Ruido<br/>+ Fuente Josefin Sans"] --> V8["📅 2026-10-18 — v1.7.0<br/>Optimización Tokens API<br/>+ Auto-Zoom y Encuadre"]
 ```
 
-El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`), la construcción de la réplica local (`v1.1.0`), la ingesta dinámica de YouTube (`v1.2.0`), la integración de IA (`v1.3.0`), la sincronización de flujo MP4 nativo (`v1.4.0`), el rediseño integral minimalista creativo (`v1.5.0`) y la depuración de transcripción con tipografía editorial Josefin Sans (`v1.6.0`).
+El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`), la construcción de la réplica local (`v1.1.0`), la ingesta dinámica de YouTube (`v1.2.0`), la integración de IA (`v1.3.0`), la sincronización de flujo MP4 nativo (`v1.4.0`), el rediseño integral minimalista creativo (`v1.5.0`), la depuración de transcripción con tipografía editorial Josefin Sans (`v1.6.0`) y la optimización de llamadas API con auto-zoom y auto-encuadre inteligentes (`v1.7.0`).
 
 > [!example] Ejemplo real: Trazabilidad de versión de OpusClip auditada
-> La versión `v1.0.0` de esta documentación corresponde al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, la versión `v1.1.0` materializó la aplicación local en `http://localhost:3040`, la versión `v1.5.0` transformó la experiencia en un estudio de IA minimalista y premium, y la versión `v1.6.0` perfecciona la visualización de texto eliminando etiquetas técnicas de pausas/censuras e incorporando la tipografía Josefin Sans.
+> La versión `v1.0.0` de esta documentación corresponde al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, la versión `v1.1.0` materializó la aplicación local en `http://localhost:3040`, la versión `v1.5.0` transformó la experiencia en un estudio de IA minimalista y premium, la versión `v1.6.0` perfeccionó la visualización de texto con Josefin Sans, y la versión `v1.7.0` maximiza el rendimiento eliminando llamadas redundantes a la API de IA e integrando reencuadre y zoom dinámicos.
 
 ---
 
 ## 📜 Bitácora de versiones
+
+### `v1.7.0` — 2026-10-18 (Optimización de Tokens API, Centrado de Play, Subtítulos en Silencio y Auto-Edición Reactiva)
+- **⚠️ Cambia para ti**:
+  - **Ahorro masivo de tokens y cero llamadas innecesarias a Gemini/Groq**: Al navegar entre el editor NLE (`/editor-ux/[clipId]`) y el visor de clips (`/clip/[id]`) o el workflow, ya no se dispara la sincronización ni el análisis automático en segundo plano. Además, las respuestas de curación IA se preservan en una caché en memoria de 45 minutos.
+  - **Botón de Play/Pausa centrado y accesible**: El botón de reproducción ahora flota en el centro exacto del contenedor de video 9:16 (`top-1/2 left-1/2`), con fondo translúcido y desenfoque. También es posible reproducir o pausar haciendo clic directo sobre cualquier punto del video.
+  - **Subtítulos ocultos automáticamente durante silencios**: Cuando el locutor deja de hablar o existe una pausa en el discurso, los subtítulos de karaoke desaparecen limpiamente de la pantalla en vez de dejar clavada la primera frase del clip.
+  - **Auto-Zoom Dinámico y Auto-Encuadre Inteligente**: Se implementaron controles interactivos con botones tipo píldora (`⚡ Auto-Zoom: ON/OFF` y `🎯 Auto-Encuadre: ON/OFF`). En los primeros 3.2 segundos del video (hook viral) y en palabras clave destacadas, el encuadre aplica punch-in de zoom dinámico (`1.12x`–`1.18x`) y reencuadre adaptativo horizontal con transiciones suaves en CSS.
+- **Implementación Técnica**:
+  - `src/app/api/ai-curate/route.ts`: Implementación de `curateResponseCache` con TTL de 45 minutos y corrección de alcance de variables de rango temporal.
+  - `src/app/clip/[id]/page.tsx`: Retiro del hook reactivo redundante que forzaba peticiones HTTP a `/api/ai-curate` en cada navegación; centrado absoluto del botón play; ocultamiento de subtítulos cuando `activeWordIndex === -1`; y cálculo dinámico de `dynamicZoom` y `dynamicCropX`.
+  - `src/app/editor-ux/[clipId]/page.tsx`: Adición de conmutadores de auto-edición en la barra de herramientas de lienzo y supresión de subtítulos en pausas.
 
 ### `v1.6.0` — 2026-10-18 (Depuración de Transcripción sin Pausas/Ruido y Tipografía Josefin Sans)
 - **⚠️ Cambia para ti**:
