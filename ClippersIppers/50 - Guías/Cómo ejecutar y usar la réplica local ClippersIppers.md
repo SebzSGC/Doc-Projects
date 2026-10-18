@@ -65,8 +65,10 @@ El diagrama superior resume el flujo principal optimizado en `http://localhost:3
 
 La réplica local combina la extracción directa de pistas ASR (`json3`) y flujo `video/mp4` desde la API Innertube de YouTube (`src/lib/youtubeInnertube.ts` y `/api/video-stream`) con curación asistida por IA:
 
-1. **Transcripción Real Palabra por Palabra y Video MP4 Directo (Sin requerir clave API)**:
+1. **Transcripción Real Palabra por Palabra, Subtítulos Limpios y Tipografía Josefin Sans**:
    - Al procesar cualquier enlace de YouTube, el servidor extrae la pista de subtítulos real con precisión de milisegundos (`tStartMs` + `tOffsetMs`) y el stream `video/mp4` directo (`itag 18`) con soporte `HTTP 206 Partial Content`.
+   - **Filtrado de pausas y ruido de ASR**: Se eliminan de forma automática todas las etiquetas técnicas como `[1.5s paused]`, `[0.8s pause]`, `[____]`, `[___]` o anotaciones de sonido (`[Música]`), garantizando un texto 100% limpio en la transcripción, el reproductor y las exportaciones `.srt` / `.xml`.
+   - **Tipografía Josefin Sans**: Los subtítulos karaoke superpuestos, los ganchos virales (Auto-Hook) y las píldoras interactivas adoptan la fuente estilizada **Josefin Sans**, configurable también en el Brand Kit Studio (`/brand-template`).
    - Si tenías un proyecto creado con una versión anterior, basta con abrir `/clip/[id]` (o pulsar **«Sincronizar Video y Subtítulos Reales»**) para actualizarlo automáticamente al video MP4 limpio y los subtítulos reales.
 2. **Conexión Opcional con Motores de IA (Google Gemini, Groq y OpenAI)**:
    - Haz clic en el botón superior **«Conectar IA»** o en el botón dentro de `/workflow`.

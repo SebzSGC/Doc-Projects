@@ -18,17 +18,28 @@ etiquetas:
 
 ```mermaid
 flowchart LR
-    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial"] --> V2["📅 2026-10-18 — v1.1.0<br/>Réplica Local Next.js 15"] --> V3["📅 2026-10-18 — v1.2.0<br/>Inspección URLs YouTube"] --> V4["📅 2026-10-18 — v1.3.0<br/>Motores IA (Gemini / Groq)"] --> V5["📅 2026-10-18 — v1.4.0<br/>Stream MP4 + Subtítulos ASR"] --> V6["📅 2026-10-18 — v1.5.0<br/>Rediseño Minimalista Creativo<br/>+ Eliminación Tiers / Créditos"]
+    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial"] --> V2["📅 2026-10-18 — v1.1.0<br/>Réplica Local Next.js 15"] --> V3["📅 2026-10-18 — v1.2.0<br/>Inspección URLs YouTube"] --> V4["📅 2026-10-18 — v1.3.0<br/>Motores IA (Gemini / Groq)"] --> V5["📅 2026-10-18 — v1.4.0<br/>Stream MP4 + Subtítulos ASR"] --> V6["📅 2026-10-18 — v1.5.0<br/>Rediseño Minimalista Creativo"] --> V7["📅 2026-10-18 — v1.6.0<br/>Depuración de Pausas/Ruido<br/>+ Fuente Josefin Sans"]
 ```
 
-El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`), la construcción de la réplica local (`v1.1.0`), la ingesta dinámica de YouTube (`v1.2.0`), la integración de IA (`v1.3.0`), la sincronización de flujo MP4 nativo (`v1.4.0`) y el rediseño integral minimalista creativo sin límites de planes ni créditos (`v1.5.0`).
+El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`), la construcción de la réplica local (`v1.1.0`), la ingesta dinámica de YouTube (`v1.2.0`), la integración de IA (`v1.3.0`), la sincronización de flujo MP4 nativo (`v1.4.0`), el rediseño integral minimalista creativo (`v1.5.0`) y la depuración de transcripción con tipografía editorial Josefin Sans (`v1.6.0`).
 
 > [!example] Ejemplo real: Trazabilidad de versión de OpusClip auditada
-> La versión `v1.0.0` de esta documentación corresponde al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, la versión `v1.1.0` materializó la aplicación local en `http://localhost:3040`, y la versión `v1.5.0` transforma la experiencia en un estudio de IA minimalista y premium inspirado en macOS, Creator IA y Linear, eliminando tiers y billeteras de créditos para un uso 100% personal e ilimitado.
+> La versión `v1.0.0` de esta documentación corresponde al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, la versión `v1.1.0` materializó la aplicación local en `http://localhost:3040`, la versión `v1.5.0` transformó la experiencia en un estudio de IA minimalista y premium, y la versión `v1.6.0` perfecciona la visualización de texto eliminando etiquetas técnicas de pausas/censuras e incorporando la tipografía Josefin Sans.
 
 ---
 
 ## 📜 Bitácora de versiones
+
+### `v1.6.0` — 2026-10-18 (Depuración de Transcripción sin Pausas/Ruido y Tipografía Josefin Sans)
+- **⚠️ Cambia para ti**:
+  - **Transcripción y subtítulos limpios de ruido técnico**: Ya no se muestran etiquetas de silencio o censura como `[1.5s paused]`, `[0.8s pause]`, `[____]`, `[___]`, `[Música]`, etc. El visor de palabras, el reproductor de video y los archivos exportados (`.srt`, `.xml`) contienen exclusivamente las palabras habladas reales.
+  - **Tipografía Josefin Sans integrada**: Se incorporó la fuente geométrica y elegante **Josefin Sans** de Google Fonts para los subtítulos karaoke superpuestos en el video, los títulos de gancho (Auto-Hook), las píldoras interactivas de transcripción y el editor de Brand Kits (`/brand-template`).
+  - **Selector de fuentes en Brand Kit Studio**: Ahora puedes alternar entre Josefin Sans, Inter, Montserrat y Geist Sans en la vista de personalización de plantillas de marca.
+- **Implementación Técnica**:
+  - Creación del módulo de saneamiento `src/lib/transcriptUtils.ts` con funciones de filtrado `isNoiseOrPauseWord`, `getCleanVisibleWords` y `cleanAllTranscriptWords`.
+  - Eliminación de la inyección artificial de pausas en `src/lib/youtubeInnertube.ts` y exclusión de tokens censurados durante el parseo de eventos `json3`.
+  - Inclusión de la fuente Google Font en `<head>` (`src/app/layout.tsx`) y variables CSS en `src/app/globals.css` (`--font-josefin`).
+  - Actualización de `src/app/clip/[id]/page.tsx`, `src/app/editor-ux/[clipId]/page.tsx`, `src/app/brand-template/page.tsx` y `src/data/seedData.ts`.
 
 ### `v1.5.0` — 2026-10-18 (Rediseño Frontend Minimalista, Creativo y Premium — Sin Tiers ni Créditos)
 - **⚠️ Cambia para ti**:
