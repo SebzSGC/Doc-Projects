@@ -64,6 +64,23 @@ El diagrama superior resume el recorrido principal dentro de la aplicación loca
 
 ---
 
+## 🧠 Conexión con Motores de IA (Google Gemini, Groq y OpenAI)
+
+Para que el extractor transcriba el audio auténtico palabra por palabra y detecte los ganchos virales reales de cualquier video:
+
+1. **Abrir el modal de conexión**:
+   - Haz clic en el botón superior **«Conectar IA»** o en el botón morado dentro de `/workflow`.
+2. **Seleccionar el proveedor deseado**:
+   - **Google Gemini (Recomendado / Gratuito)**: Obtén tu clave en [Google AI Studio](https://aistudio.google.com/app/apikey) sin costo ni tarjeta de crédito. Utiliza `gemini-2.0-flash`.
+   - **Groq Cloud (Ultra Rápido)**: Obtén tu clave en [Groq Console](https://console.groq.com/keys) para transcripciones y curación con `llama-3.3-70b-versatile`.
+   - **OpenAI**: Utiliza tu clave de OpenAI para procesamiento con `gpt-4o-mini`.
+3. **Probar y Guardar**:
+   - Pega tu clave API y pulsa **«Probar y Guardar Clave»**. El sistema realiza una llamada de verificación a `/api/ai-test` y guarda el estado en `localStorage`.
+4. **Generación con IA en `/workflow`**:
+   - Al pulsar **«Generar Clips Instantáneamente»**, la aplicación contacta a `/api/ai-curate`, analiza la temática del video, genera los 3 mejores cortes con sus marcas de tiempo exactas (`startSec` y `endSec`) y construye los subtítulos palabra por palabra.
+
+---
+
 > [!info]- Detalle técnico (para desarrolladores)
 > - **Estado reactivo persistente**: `D:\rea-projects\ClippersIppers\src\store\opusStore.ts` implementa los átomos Jotai con `atomWithStorage` en `localStorage` bajo el prefijo `clippers.*`.
 > - **Tokens visuales duales**: `D:\rea-projects\ClippersIppers\src\app\globals.css` soporta tanto el modo oscuro de estudio original (`[data-theme="dark"]` `#1a1a1a` / `#bef737`) como la superficie clara SaaS (`[data-theme="light"]` `#f8fafc`), conmutables desde la barra superior.

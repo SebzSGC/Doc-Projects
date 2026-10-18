@@ -18,17 +18,26 @@ etiquetas:
 
 ```mermaid
 flowchart LR
-    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial + Descarga de 550+ Chunks +<br/>Creación completa del Vault Obsidian (47 notas)"] --> V2["📅 2026-10-18 — v1.1.0<br/>Construcción de Réplica Local Next.js 15 +<br/>Editor NLE + Calculadora de Créditos"] --> V3["📅 2026-10-18 — v1.2.0<br/>Inspección en vivo de URLs de YouTube +<br/>Extracción de Metadatos y Embed Interactivo"]
+    V1["📅 2026-10-18 — v1.0.0<br/>Auditoría REA inicial + Vault Obsidian"] --> V2["📅 2026-10-18 — v1.1.0<br/>Construcción Réplica Local Next.js 15"] --> V3["📅 2026-10-18 — v1.2.0<br/>Inspección en vivo URLs YouTube"] --> V4["📅 2026-10-18 — v1.3.0<br/>Integración Motores IA (Gemini / Groq)<br/>Curación y Subtítulos Auténticos"]
 ```
 
-El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`), la construcción de la réplica local (`v1.1.0`) y la integración del extractor en vivo de YouTube (`v1.2.0`).
+El diagrama registra el hito fundacional de la auditoría REA (`v1.0.0`), la construcción de la réplica local (`v1.1.0`), la ingesta dinámica de YouTube (`v1.2.0`) y la integración de IA para curación y transcripción real (`v1.3.0`).
 
 > [!example] Ejemplo real: Trazabilidad de versión de OpusClip auditada
-> La versión `v1.0.0` de esta documentación corresponde exactamente al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, la versión `v1.1.0` materializa todos sus módulos en una aplicación local en `http://localhost:3040`, y la versión `v1.2.0` añade ingesta dinámica y reproductores en vivo para enlaces externos de YouTube.
+> La versión `v1.0.0` de esta documentación corresponde exactamente al build de producción **`tw0-OiEO15o4q3nmL5clA`** de `https://clip.opus.pro/dashboard`, la versión `v1.1.0` materializa todos sus módulos en una aplicación local en `http://localhost:3040`, la versión `v1.2.0` añade ingesta dinámica para YouTube, y la versión `v1.3.0` conecta modelos de IA (Gemini, Groq, OpenAI) para transcribir y recortar clips auténticos.
 
 ---
 
 ## 📜 Bitácora de versiones
+
+### `v1.3.0` — 2026-10-18 (Integración de Motores de IA para Extracción y Curación Real)
+- **⚠️ Cambia para ti**:
+  - Puedes conectar una clave API gratuita de Google Gemini (2.0 Flash) o Groq Cloud (Llama 3.3 70B & Whisper) para que la aplicación analice el contenido auténtico de cualquier video, genere clips con ganchos virales reales y sincronice subtítulos palabra por palabra.
+  - Nuevo modal interactivo de conexión accesible desde la barra superior (`Conectar IA`) o en `/workflow` con selector de proveedor, enlaces directos a las consolas y verificación de conexión en tiempo real.
+- **Implementación Técnica**:
+  - Creación del endpoint `/api/ai-test` para validación de claves API de Gemini, Groq y OpenAI.
+  - Creación del endpoint `/api/ai-curate` con prompt estructurado para curación multimodal de video, delimitación de tiempos (`startSec`, `endSec`) y generación de tokens de subtítulos (`transcriptWords`).
+  - Nuevo átomo `aiConfigAtom` persistido en `localStorage` integrado en `AppShell.tsx`, `GlobalModals.tsx` y `workflow/page.tsx`.
 
 ### `v1.2.0` — 2026-10-18 (Inspección en vivo de enlaces YouTube y reproductor embebido)
 - **⚠️ Cambia para ti**:
